@@ -6,6 +6,7 @@ import ma.micda.pfe.controller.util.JsfUtil.PersistAction;
 import ma.micda.pfe.service.ModuleFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import ma.micda.pfe.bean.Cours;
 
 @Named("moduleController")
 @SessionScoped
@@ -27,7 +29,16 @@ public class ModuleController implements Serializable {
     private ma.micda.pfe.service.ModuleFacade ejbFacade;
     private List<Module> items = null;
     private Module selected;
-
+    @EJB
+    private ma.micda.pfe.service.CoursFacade coursFacade;
+    private List<Cours> courses = new ArrayList<>();
+    
+    
+    public void findByModuleId(Long id){
+         courses = coursFacade.findByModuleId(id);
+    }
+            
+            
     public ModuleController() {
     }
 
@@ -119,6 +130,14 @@ public class ModuleController implements Serializable {
 
     public List<Module> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<Cours> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Cours> courses) {
+        this.courses = courses;
     }
 
     @FacesConverter(forClass = Module.class)

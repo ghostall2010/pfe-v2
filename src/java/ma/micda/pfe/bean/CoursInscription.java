@@ -27,6 +27,12 @@ public class CoursInscription implements Serializable {
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateInscription;
+    @ManyToOne
+    private Cours cours;
+    @ManyToOne
+    private Inscription inscription;
+    @ManyToOne
+    private ModuleInscription moduleInscription;
 
     public CoursInscription(Long id, Date dateInscription, Cours cours, Inscription inscription, ModuleInscription moduleInscription) {
         this.id = id;
@@ -70,19 +76,6 @@ public class CoursInscription implements Serializable {
     public void setModuleInscription(ModuleInscription moduleInscription) {
         this.moduleInscription = moduleInscription;
     }
-    
-    
-    
-    
-    
-    
-    @ManyToOne
-    private Cours cours;
-    @ManyToOne
-    private Inscription inscription;
-    @ManyToOne
-    private ModuleInscription moduleInscription;
-    
 
     public Long getId() {
         return id;
@@ -112,9 +105,6 @@ public class CoursInscription implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ma.micda.pfe.bean.CoursInscription[ id=" + id + " ]";
-    }
-    
+   
+
 }

@@ -25,6 +25,13 @@ public class Cours implements Serializable {
     private Long id;
     private String nom;
     private String description;
+    @ManyToOne
+    private Module module;
+    private Double coeffission;
+    @ManyToOne
+    private NiveauDiffeculte niveauDiffeculte;
+    @ManyToOne
+    private EtatCours etatCours;
 
     public Cours(Long id, String nom, String description, Module module, Double coeffission, NiveauDiffeculte niveauDiffeculte, EtatCours etatCours) {
         this.id = id;
@@ -86,17 +93,6 @@ public class Cours implements Serializable {
     public void setEtatCours(EtatCours etatCours) {
         this.etatCours = etatCours;
     }
-    
-     
-    
-    
-    @ManyToOne
-    private Module module;
-    private Double coeffission;
-    @ManyToOne
-    private NiveauDiffeculte niveauDiffeculte;
-    @ManyToOne
-    private EtatCours etatCours;
 
     public Long getId() {
         return id;
@@ -128,7 +124,7 @@ public class Cours implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.Cours[ id=" + id + " ]";
+        return nom;
     }
-    
+
 }

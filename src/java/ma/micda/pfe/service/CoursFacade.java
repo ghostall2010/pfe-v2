@@ -5,6 +5,7 @@
  */
 package ma.micda.pfe.service;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,11 @@ public class CoursFacade extends AbstractFacade<Cours> {
     @PersistenceContext(unitName = "pfe-v2PU")
     private EntityManager em;
 
+    public List<Cours> findByModuleId(Long moduleId) {
+        List<Cours> courses = em.createQuery("SELECT c FROM Cours c WHERE c.module.id = '" + moduleId + "'").getResultList();
+        return courses;
+    }
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

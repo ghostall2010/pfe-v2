@@ -134,7 +134,7 @@ public class Fillier implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.Fillier[ id=" + id + " ]";
+        return nom;
     }
     
 }

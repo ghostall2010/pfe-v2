@@ -160,7 +160,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.User[ id=" + id + " ]";
+        return email;
     }
     
 }

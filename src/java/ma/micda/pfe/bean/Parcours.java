@@ -94,7 +94,7 @@ public class Parcours implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.Parcours[ id=" + id + " ]";
+        return libelle;
     }
     
 }

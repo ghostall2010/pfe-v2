@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 14 juin 2020 à 14:20
+-- Généré le :  Dim 14 juin 2020 à 15:25
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -43,6 +43,16 @@ CREATE TABLE IF NOT EXISTS `cours` (
   KEY `FK_COURS_NIVEAUDIFFECULTE_ID` (`NIVEAUDIFFECULTE_ID`),
   KEY `FK_COURS_ETATCOURS_ID` (`ETATCOURS_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `cours`
+--
+
+INSERT INTO `cours` (`ID`, `COEFFISSION`, `DESCRIPTION`, `NOM`, `ETATCOURS_ID`, `MODULE_ID`, `NIVEAUDIFFECULTE_ID`) VALUES
+(204, 12, 'cours1', 'cours1', 54, 202, 51),
+(205, 10, 'cours 2', 'cours 2', 54, 202, 53),
+(206, 9, 'cours 3', 'cours 3', 56, 203, 53),
+(207, 7, 'cours 4', 'cours 4', 55, 203, 52);
 
 -- --------------------------------------------------------
 
@@ -187,6 +197,15 @@ CREATE TABLE IF NOT EXISTS `module` (
   KEY `FK_MODULE_FILLIER_ID` (`FILLIER_ID`),
   KEY `FK_MODULE_NIVEAUDIFFECULTE_ID` (`NIVEAUDIFFECULTE_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `module`
+--
+
+INSERT INTO `module` (`ID`, `DESCRIPTION`, `NOM`, `FILLIER_ID`, `NIVEAUDIFFECULTE_ID`) VALUES
+(201, 'Module 1', 'Module 1', 151, 51),
+(202, 'Module 2', 'Module 2', 151, 52),
+(203, 'Module 3', 'Module 3', 153, 51);
 
 -- --------------------------------------------------------
 

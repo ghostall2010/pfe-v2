@@ -119,7 +119,7 @@ public class Module implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.Module[ id=" + id + " ]";
+        return nom;
     }
     
 }

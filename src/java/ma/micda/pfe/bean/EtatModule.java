@@ -80,7 +80,7 @@ public class EtatModule implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.EtatModule[ id=" + id + " ]";
+        return libelle;
     }
     
 }

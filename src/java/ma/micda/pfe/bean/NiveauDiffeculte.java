@@ -74,7 +74,7 @@ public class NiveauDiffeculte implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.NiveauDiffeculte[ id=" + id + " ]";
+        return libelle;
     }
     
 }

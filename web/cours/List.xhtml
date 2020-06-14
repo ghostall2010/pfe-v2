@@ -43,7 +43,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCoursTitle_module}"/>
                             </f:facet>
-                            <h:outputText value="#{item.module}"/>
+                            <h:outputText value="#{item.module.nom}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -55,20 +55,15 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCoursTitle_niveauDiffeculte}"/>
                             </f:facet>
-                            <h:outputText value="#{item.niveauDiffeculte}"/>
+                            <h:outputText value="#{item.niveauDiffeculte.libelle}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCoursTitle_etatCours}"/>
                             </f:facet>
-                            <h:outputText value="#{item.etatCours}"/>
+                            <h:outputText value="#{item.etatCours.libelle}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCoursTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{coursController.prepareCreate}" update=":CoursCreateForm" oncomplete="PF('CoursCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CoursViewForm" oncomplete="PF('CoursViewDialog').show()" disabled="#{empty coursController.selected}"/>

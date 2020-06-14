@@ -81,7 +81,7 @@ public class EtatInscription implements Serializable {
 
     @Override
     public String toString() {
-        return "ma.micda.pfe.bean.EtatCours[ id=" + id + " ]";
+        return libelle;
     }
     
 }

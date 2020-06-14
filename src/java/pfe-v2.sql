@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 14 juin 2020 à 11:02
+-- Généré le :  Dim 14 juin 2020 à 14:20
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -140,6 +140,16 @@ CREATE TABLE IF NOT EXISTS `fillier` (
   KEY `FK_FILLIER_PARCOURS_ID` (`PARCOURS_ID`),
   KEY `FK_FILLIER_RESPONSABLE_ID` (`RESPONSABLE_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `fillier`
+--
+
+INSERT INTO `fillier` (`ID`, `DESCRIPTION`, `NOM`, `PARCOURS_ID`, `RESPONSABLE_ID`) VALUES
+(151, 'Ingénierie des Applications Mobiles', 'Ingénierie des Applications Mobiles', 59, 101),
+(152, 'Ingénierie App', 'Ingénierie App', 59, 101),
+(153, 'Ingénierie B', 'Ingénierie B', 60, 101),
+(154, 'Ingénierie E', 'Ingénierie E', 60, 101);
 
 -- --------------------------------------------------------
 

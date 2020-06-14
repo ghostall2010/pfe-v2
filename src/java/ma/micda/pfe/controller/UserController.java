@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import ma.micda.pfe.controller.util.SessionUtil;
 
 @Named("userController")
 @SessionScoped
@@ -28,15 +29,23 @@ public class UserController implements Serializable {
     private List<User> items = null;
     private User selected;
 
-    public void seConnecter() {
+    public String seConnecter() {
         int res = ejbFacade.seConnecter(getSelected());
-        if( res == 1){
-            JsfUtil.addSuccessMessage(" BienVenue");
-        }else if( res == -1){
+        if (res == 1) {
+            SessionUtil.registerUser(getSelected());
+            return "/module/List.xhtml?faces-redirect=true";
+        } else if (res == -1) {
             JsfUtil.addErrorMessage(" Probleme Login");
-        }else if( res == -2){
+        } else if (res == -2) {
             JsfUtil.addErrorMessage(" Probleme Password");
         }
+        SessionUtil.getSession().invalidate();
+        return null;
+    }
+
+    public String seDeconnecter() {
+        SessionUtil.getSession().invalidate();
+        return "/index";
     }
 
     public UserController() {

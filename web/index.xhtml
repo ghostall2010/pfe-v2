@@ -10,22 +10,31 @@
     </h:head>
     <h:body>
         <p:growl id="gr" life="3000" />
-        <f:view>
-
-
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <p:panelGrid columns="2">
-
-                    <p:outputLabel value="Email:" for="email" />
-                    <p:inputText id="email" value="#{userController.selected.email}" title="Email" />
-                    <p:outputLabel value="MotDePasse:" for="motDePasse" />
-                    <p:password id="motDePasse" value="#{userController.selected.motDePasse}" title="MotDePasse" />
-                    <p:commandButton actionListener="#{userController.seConnecter()}" update=":gr" value="Se Connecter" ></p:commandButton>
-                </p:panelGrid>
+                <h1 style="color:#68b3c8;text-align: center">S'identifier</h1>
+                        <p:panelGrid styleClass="ui-noborder" style="margin: 0 auto">
+                            <p:row style="text-align: center;">
+                                <p:column >
+                                    <img src="resources/images/user.png" style="border-radius: 100%; width: 100px; height: auto;margin-bottom:20px"/><br/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column style="text-align: center">
+                                    <p:inputText id="clientEmail" value="#{userController.selected.email}" placeholder="Tapez votre email" style="width: 400px;height: 40px;text-align: center"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column style="text-align: center">
+                                    <p:password id="clientPassword" value="#{userController.selected.motDePasse}" placeholder="Tapez votre mot de passe" style="width: 400px;height: 40px;text-align: center"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column style="text-align: center">
+                                    <p:commandButton value="Vérifier" style="width: 400px;height: 40px"  action="#{userController.seConnecter()}"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
             </h:form>
-        </f:view>
-
     </h:body>
 
 </html>

@@ -6,6 +6,7 @@ import ma.micda.pfe.controller.util.JsfUtil.PersistAction;
 import ma.micda.pfe.service.ParcoursFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import ma.micda.pfe.bean.Fillier;
 
 @Named("parcoursController")
 @SessionScoped
@@ -25,9 +27,17 @@ public class ParcoursController implements Serializable {
 
     @EJB
     private ma.micda.pfe.service.ParcoursFacade ejbFacade;
+     @EJB
+    private ma.micda.pfe.service.FillierFacade fillierFacade;
     private List<Parcours> items = null;
     private Parcours selected;
-
+    private List<Fillier> filliers = new ArrayList<>();
+    
+    
+    
+    public void findByParcoursId(Long id){
+         filliers = fillierFacade.findByParcourId(id);
+    }
     public ParcoursController() {
     }
 
@@ -72,6 +82,14 @@ public class ParcoursController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+
+    public List<Fillier> getFilliers() {
+        return filliers;
+    }
+
+    public void setFilliers(List<Fillier> filliers) {
+        this.filliers = filliers;
     }
 
     public List<Parcours> getItems() {

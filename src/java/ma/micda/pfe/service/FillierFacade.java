@@ -5,10 +5,12 @@
  */
 package ma.micda.pfe.service;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import ma.micda.pfe.bean.Fillier;
+import ma.micda.pfe.bean.User;
 
 /**
  *
@@ -19,7 +21,11 @@ public class FillierFacade extends AbstractFacade<Fillier> {
 
     @PersistenceContext(unitName = "pfe-v2PU")
     private EntityManager em;
-
+    
+    public List<Fillier> findByParcourId(Long parcourId) {
+        List<Fillier> filliers = em.createQuery("SELECT f FROM Fillier f WHERE f.parcours.id = '" + parcourId + "'").getResultList();
+        return filliers;
+    }
     @Override
     protected EntityManager getEntityManager() {
         return em;

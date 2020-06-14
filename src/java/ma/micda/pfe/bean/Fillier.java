@@ -36,6 +36,8 @@ public class Fillier implements Serializable {
     private String description;
     @ManyToOne
     private User responsable;
+    @ManyToOne
+    private Parcours parcours;
 
     public Fillier(List<Inscription> inscriptions, List<Module> modules, Long id, String nom, String description, User responsable, Parcours parcours) {
         this.inscriptions = inscriptions;
@@ -99,8 +101,7 @@ public class Fillier implements Serializable {
     }
     
     
-    @ManyToOne
-    private Parcours parcours;
+    
     
 
     public Long getId() {

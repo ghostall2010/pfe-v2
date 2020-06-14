@@ -15,44 +15,89 @@
 
         <ui:define name="body">
             <h:form id="ParcoursListForm">
-                <p:panel header="#{bundle.ListParcoursTitle}">
-                    <p:dataTable id="datalist" value="#{parcoursController.items}" var="item"
-                                 selectionMode="single" selection="#{parcoursController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <p:panel header="#{bundle.ListParcoursTitle}">
+                            <p:dataTable id="datalist" value="#{parcoursController.items}" var="item"
+                                         selectionMode="single" selection="#{parcoursController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParcoursTitle_libelle}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.libelle}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParcoursTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParcoursTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{parcoursController.prepareCreate}" update=":ParcoursCreateForm" oncomplete="PF('ParcoursCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ParcoursViewForm" oncomplete="PF('ParcoursViewDialog').show()" disabled="#{empty parcoursController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ParcoursEditForm" oncomplete="PF('ParcoursEditDialog').show()" disabled="#{empty parcoursController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{parcoursController.destroy}" update=":growl,datalist" disabled="#{empty parcoursController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListParcoursTitle_libelle}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.libelle}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListParcoursTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListParcoursTitle_id}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Action"/>
+                                    </f:facet>
+                                    <p:commandButton icon="ui-icon-plus" actionListener="#{parcoursController.findByParcoursId(item.id)}" update=":ParcoursListForm:datalistFillier"/>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{parcoursController.prepareCreate}" update=":ParcoursCreateForm" oncomplete="PF('ParcoursCreateDialog').show()"/>
+                                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ParcoursViewForm" oncomplete="PF('ParcoursViewDialog').show()" disabled="#{empty parcoursController.selected}"/>
+                                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ParcoursEditForm" oncomplete="PF('ParcoursEditDialog').show()" disabled="#{empty parcoursController.selected}"/>
+                                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{parcoursController.destroy}" update=":growl,datalist" disabled="#{empty parcoursController.selected}"/>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                    </div>
+                    <div class="ui-g-6">
+                        <p:panel header="#{bundle.ListFillierTitle}">
+                            <p:dataTable id="datalistFillier" value="#{parcoursController.filliers}" var="item"
+                                         selectionMode="single" selection="#{fillierController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFillierTitle_nom}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nom}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFillierTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListFillierTitle_responsable}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.responsable}"/>
+                                </p:column>
+
+
+                            </p:dataTable>
+                        </p:panel>
+                    </div>
+                </div>
+
+
             </h:form>
 
             <ui:include src="Create.xhtml"/>

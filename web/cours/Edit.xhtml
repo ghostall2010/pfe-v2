@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoursEditDlg" widgetVar="CoursEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCoursTitle}">
+            <h:form id="CoursEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coursController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCoursLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{coursController.selected.nom}" title="#{bundle.EditCoursTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditCoursLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{coursController.selected.description}" title="#{bundle.EditCoursTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditCoursLabel_module}" for="module" />
+                        <p:selectOneMenu id="module" value="#{coursController.selected.module}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleItem"
+                                           itemValue="#{moduleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCoursLabel_coeffission}" for="coeffission" />
+                        <p:inputText id="coeffission" value="#{coursController.selected.coeffission}" title="#{bundle.EditCoursTitle_coeffission}" />
+                        <p:outputLabel value="#{bundle.EditCoursLabel_niveauDiffeculte}" for="niveauDiffeculte" />
+                        <p:selectOneMenu id="niveauDiffeculte" value="#{coursController.selected.niveauDiffeculte}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{niveauDiffeculteController.itemsAvailableSelectOne}"
+                                           var="niveauDiffeculteItem"
+                                           itemValue="#{niveauDiffeculteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCoursLabel_etatCours}" for="etatCours" />
+                        <p:selectOneMenu id="etatCours" value="#{coursController.selected.etatCours}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etatCoursController.itemsAvailableSelectOne}"
+                                           var="etatCoursItem"
+                                           itemValue="#{etatCoursItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCoursLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{coursController.selected.id}" title="#{bundle.EditCoursTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{coursController.update}" value="#{bundle.Save}" update="display,:CoursListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CoursEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CoursEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

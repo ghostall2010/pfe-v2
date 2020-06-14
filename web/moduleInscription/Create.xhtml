@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ModuleInscriptionCreateDlg" widgetVar="ModuleInscriptionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateModuleInscriptionTitle}">
+            <h:form id="ModuleInscriptionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{moduleInscriptionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_module}" for="module" />
+                        <p:selectOneMenu id="module" value="#{moduleInscriptionController.selected.module}" >
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleItem"
+                                           itemValue="#{moduleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_inscription}" for="inscription" />
+                        <p:selectOneMenu id="inscription" value="#{moduleInscriptionController.selected.inscription}" >
+                            <f:selectItems value="#{inscriptionController.itemsAvailableSelectOne}"
+                                           var="inscriptionItem"
+                                           itemValue="#{inscriptionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_etatModule}" for="etatModule" />
+                        <p:selectOneMenu id="etatModule" value="#{moduleInscriptionController.selected.etatModule}" >
+                            <f:selectItems value="#{etatModuleController.itemsAvailableSelectOne}"
+                                           var="etatModuleItem"
+                                           itemValue="#{etatModuleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{moduleInscriptionController.selected.note}" title="#{bundle.CreateModuleInscriptionTitle_note}" />
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_dateInscription}" for="dateInscription" />
+                        <p:calendar id="dateInscription" pattern="MM/dd/yyyy" value="#{moduleInscriptionController.selected.dateInscription}" title="#{bundle.EditModuleInscriptionTitle_dateInscription}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_dateFinalisation}" for="dateFinalisation" />
+                        <p:calendar id="dateFinalisation" pattern="MM/dd/yyyy" value="#{moduleInscriptionController.selected.dateFinalisation}" title="#{bundle.EditModuleInscriptionTitle_dateFinalisation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateModuleInscriptionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{moduleInscriptionController.selected.id}" title="#{bundle.CreateModuleInscriptionTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{moduleInscriptionController.create}" value="#{bundle.Save}" update="display,:ModuleInscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ModuleInscriptionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ModuleInscriptionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

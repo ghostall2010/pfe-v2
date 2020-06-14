@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ModuleInscriptionEditDlg" widgetVar="ModuleInscriptionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditModuleInscriptionTitle}">
+            <h:form id="ModuleInscriptionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{moduleInscriptionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_module}" for="module" />
+                        <p:selectOneMenu id="module" value="#{moduleInscriptionController.selected.module}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleItem"
+                                           itemValue="#{moduleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_inscription}" for="inscription" />
+                        <p:selectOneMenu id="inscription" value="#{moduleInscriptionController.selected.inscription}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inscriptionController.itemsAvailableSelectOne}"
+                                           var="inscriptionItem"
+                                           itemValue="#{inscriptionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_etatModule}" for="etatModule" />
+                        <p:selectOneMenu id="etatModule" value="#{moduleInscriptionController.selected.etatModule}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etatModuleController.itemsAvailableSelectOne}"
+                                           var="etatModuleItem"
+                                           itemValue="#{etatModuleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{moduleInscriptionController.selected.note}" title="#{bundle.EditModuleInscriptionTitle_note}" />
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_dateInscription}" for="dateInscription" />
+                        <p:calendar id="dateInscription" pattern="MM/dd/yyyy" value="#{moduleInscriptionController.selected.dateInscription}" title="#{bundle.EditModuleInscriptionTitle_dateInscription}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_dateFinalisation}" for="dateFinalisation" />
+                        <p:calendar id="dateFinalisation" pattern="MM/dd/yyyy" value="#{moduleInscriptionController.selected.dateFinalisation}" title="#{bundle.EditModuleInscriptionTitle_dateFinalisation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditModuleInscriptionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{moduleInscriptionController.selected.id}" title="#{bundle.EditModuleInscriptionTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{moduleInscriptionController.update}" value="#{bundle.Save}" update="display,:ModuleInscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ModuleInscriptionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ModuleInscriptionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FillierEditDlg" widgetVar="FillierEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFillierTitle}">
+            <h:form id="FillierEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fillierController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFillierLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{fillierController.selected.nom}" title="#{bundle.EditFillierTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditFillierLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{fillierController.selected.description}" title="#{bundle.EditFillierTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditFillierLabel_responsable}" for="responsable" />
+                        <p:selectOneMenu id="responsable" value="#{fillierController.selected.responsable}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="responsableItem"
+                                           itemValue="#{responsableItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFillierLabel_parcours}" for="parcours" />
+                        <p:selectOneMenu id="parcours" value="#{fillierController.selected.parcours}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{parcoursController.itemsAvailableSelectOne}"
+                                           var="parcoursItem"
+                                           itemValue="#{parcoursItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFillierLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{fillierController.selected.id}" title="#{bundle.EditFillierTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fillierController.update}" value="#{bundle.Save}" update="display,:FillierListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FillierEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FillierEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

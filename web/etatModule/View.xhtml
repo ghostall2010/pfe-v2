@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtatModuleViewDlg" widgetVar="EtatModuleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEtatModuleTitle}">
+            <h:form id="EtatModuleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etatModuleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEtatModuleLabel_libelle}"/>
+                        <h:outputText value="#{etatModuleController.selected.libelle}" title="#{bundle.ViewEtatModuleTitle_libelle}"/>
+                        <h:outputText value="#{bundle.ViewEtatModuleLabel_color}"/>
+                        <h:outputText value="#{etatModuleController.selected.color}" title="#{bundle.ViewEtatModuleTitle_color}"/>
+                        <h:outputText value="#{bundle.ViewEtatModuleLabel_id}"/>
+                        <h:outputText value="#{etatModuleController.selected.id}" title="#{bundle.ViewEtatModuleTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EtatModuleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

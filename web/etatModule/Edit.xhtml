@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtatModuleEditDlg" widgetVar="EtatModuleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtatModuleTitle}">
+            <h:form id="EtatModuleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etatModuleController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEtatModuleLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{etatModuleController.selected.libelle}" title="#{bundle.EditEtatModuleTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditEtatModuleLabel_color}" for="color" />
+                        <p:inputText id="color" value="#{etatModuleController.selected.color}" title="#{bundle.EditEtatModuleTitle_color}" />
+                        <p:outputLabel value="#{bundle.EditEtatModuleLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{etatModuleController.selected.id}" title="#{bundle.EditEtatModuleTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{etatModuleController.update}" value="#{bundle.Save}" update="display,:EtatModuleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtatModuleEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EtatModuleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

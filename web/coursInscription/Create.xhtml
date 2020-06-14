@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoursInscriptionCreateDlg" widgetVar="CoursInscriptionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCoursInscriptionTitle}">
+            <h:form id="CoursInscriptionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coursInscriptionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCoursInscriptionLabel_dateInscription}" for="dateInscription" />
+                        <p:calendar id="dateInscription" pattern="MM/dd/yyyy" value="#{coursInscriptionController.selected.dateInscription}" title="#{bundle.EditCoursInscriptionTitle_dateInscription}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCoursInscriptionLabel_cours}" for="cours" />
+                        <p:selectOneMenu id="cours" value="#{coursInscriptionController.selected.cours}" >
+                            <f:selectItems value="#{coursController.itemsAvailableSelectOne}"
+                                           var="coursItem"
+                                           itemValue="#{coursItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCoursInscriptionLabel_inscription}" for="inscription" />
+                        <p:selectOneMenu id="inscription" value="#{coursInscriptionController.selected.inscription}" >
+                            <f:selectItems value="#{inscriptionController.itemsAvailableSelectOne}"
+                                           var="inscriptionItem"
+                                           itemValue="#{inscriptionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCoursInscriptionLabel_moduleInscription}" for="moduleInscription" />
+                        <p:selectOneMenu id="moduleInscription" value="#{coursInscriptionController.selected.moduleInscription}" >
+                            <f:selectItems value="#{moduleInscriptionController.itemsAvailableSelectOne}"
+                                           var="moduleInscriptionItem"
+                                           itemValue="#{moduleInscriptionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCoursInscriptionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{coursInscriptionController.selected.id}" title="#{bundle.CreateCoursInscriptionTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{coursInscriptionController.create}" value="#{bundle.Save}" update="display,:CoursInscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoursInscriptionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CoursInscriptionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

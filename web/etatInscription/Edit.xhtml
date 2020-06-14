@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtatInscriptionEditDlg" widgetVar="EtatInscriptionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtatInscriptionTitle}">
+            <h:form id="EtatInscriptionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etatInscriptionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEtatInscriptionLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{etatInscriptionController.selected.libelle}" title="#{bundle.EditEtatInscriptionTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditEtatInscriptionLabel_color}" for="color" />
+                        <p:inputText id="color" value="#{etatInscriptionController.selected.color}" title="#{bundle.EditEtatInscriptionTitle_color}" />
+                        <p:outputLabel value="#{bundle.EditEtatInscriptionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{etatInscriptionController.selected.id}" title="#{bundle.EditEtatInscriptionTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{etatInscriptionController.update}" value="#{bundle.Save}" update="display,:EtatInscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtatInscriptionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EtatInscriptionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

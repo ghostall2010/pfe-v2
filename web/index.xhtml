@@ -1,51 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="/cours/List" value="Show All Cours Items"/>
-        <br />
-        <h:link outcome="/coursInscription/List" value="Show All CoursInscription Items"/>
-        <br />
-        <h:link outcome="/etatCours/List" value="Show All EtatCours Items"/>
-        <br />
-        <h:link outcome="/etatInscription/List" value="Show All EtatInscription Items"/>
-        <br />
-        <h:link outcome="/etatModule/List" value="Show All EtatModule Items"/>
-        <br />
-        <h:link outcome="/fillier/List" value="Show All Fillier Items"/>
-        <br />
-        <h:link outcome="/inscription/List" value="Show All Inscription Items"/>
-        <br />
-        <h:link outcome="/module/List" value="Show All Module Items"/>
-        <br />
-        <h:link outcome="/moduleInscription/List" value="Show All ModuleInscription Items"/>
-        <br />
-        <h:link outcome="/niveauDiffeculte/List" value="Show All NiveauDiffeculte Items"/>
-        <br />
-        <h:link outcome="/parcours/List" value="Show All Parcours Items"/>
-        <br />
-        <h:link outcome="/user/List" value="Show All User Items"/>
+        <p:growl id="gr" life="3000" />
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel value="Email:" for="email" />
+                    <p:inputText id="email" value="#{userController.selected.email}" title="Email" />
+                    <p:outputLabel value="MotDePasse:" for="motDePasse" />
+                    <p:password id="motDePasse" value="#{userController.selected.motDePasse}" title="MotDePasse" />
+                    <p:commandButton actionListener="#{userController.seConnecter()}" update=":gr" value="Se Connecter" ></p:commandButton>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+
     </h:body>
-
-
-
-
-
-
-
-
-
-
-
 
 </html>
 

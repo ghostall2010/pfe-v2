@@ -5,6 +5,7 @@
  */
 package ma.micda.pfe.service;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,26 @@ public class UserFacade extends AbstractFacade<User> {
     @PersistenceContext(unitName = "pfe-v2PU")
     private EntityManager em;
 
+    public int seConnecter(User user) {
+        User loadedUser = findByEmail(user.getEmail());
+        if (loadedUser == null) {
+            return -1;
+        } else if (!user.getMotDePasse().equals(loadedUser.getMotDePasse())) {
+            return -2;
+        } else {
+            return 1;
+        }
+    }
+
+    public User findByEmail(String email) {
+        List<User> users = em.createQuery("SELECT u FROM User u WHERE u.email = '" + email + "'").getResultList();
+        if (users == null || users.isEmpty()) {
+            return null;
+        } else {
+            return users.get(0);
+        }
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -28,5 +49,5 @@ public class UserFacade extends AbstractFacade<User> {
     public UserFacade() {
         super(User.class);
     }
-    
+
 }

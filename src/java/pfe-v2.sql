@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 14 juin 2020 à 09:46
+-- Généré le :  Dim 14 juin 2020 à 11:02
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -275,6 +275,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `PRENOM` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`ID`, `ADRESSE`, `DATEINSCRIPTION`, `DATENAISSANCE`, `EMAIL`, `IMAGEPROFILE`, `MOTDEPASSE`, `NOM`, `PRENOM`) VALUES
+(101, 'ssd', '2020-06-18', '2020-06-09', 'test@test.com', 'sd', '123456', 'mohamed', 'kamal'),
+(102, 'xsqf', '2020-06-02', '2020-06-15', 'test1@test.com', 'sqdsqd', '654321', 'ahmed', 'amine');
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

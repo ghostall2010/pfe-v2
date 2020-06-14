@@ -28,10 +28,24 @@ public class UserController implements Serializable {
     private List<User> items = null;
     private User selected;
 
+    public void seConnecter() {
+        int res = ejbFacade.seConnecter(getSelected());
+        if( res == 1){
+            JsfUtil.addSuccessMessage(" BienVenue");
+        }else if( res == -1){
+            JsfUtil.addErrorMessage(" Probleme Login");
+        }else if( res == -2){
+            JsfUtil.addErrorMessage(" Probleme Password");
+        }
+    }
+
     public UserController() {
     }
 
     public User getSelected() {
+        if (selected == null) {
+            selected = new User();
+        }
         return selected;
     }
 

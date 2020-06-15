@@ -29,6 +29,12 @@ public class Inscription implements Serializable {
     private Date dateInscription;
     @ManyToOne
     private EtatInscription etatInscription;
+    @ManyToOne
+    private Fillier fillier;
+    @ManyToOne
+    private User user;
+    
+
 
     public Inscription(Long id, Date dateInscription, EtatInscription etatInscription, Fillier fillier, User user) {
         this.id = id;
@@ -72,12 +78,6 @@ public class Inscription implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    
-    @ManyToOne
-    private Fillier fillier;
-    @ManyToOne
-    private User user;
     
 
     public Long getId() {

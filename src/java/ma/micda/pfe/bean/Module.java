@@ -30,6 +30,10 @@ public class Module implements Serializable {
     private Long id;
     private String nom;
     private String description;
+    @ManyToOne
+    private Fillier fillier;
+    @ManyToOne
+    private NiveauDiffeculte niveauDiffeculte;
 
     public Module(List<Cours> courss, Long id, String nom, String description, Fillier fillier, NiveauDiffeculte niveauDiffeculte) {
         this.courss = courss;
@@ -82,13 +86,7 @@ public class Module implements Serializable {
     public void setNiveauDiffeculte(NiveauDiffeculte niveauDiffeculte) {
         this.niveauDiffeculte = niveauDiffeculte;
     }
-    
-    
-    @ManyToOne
-    private Fillier fillier;
-    @ManyToOne
-    private NiveauDiffeculte niveauDiffeculte;
-    
+
     public Long getId() {
         return id;
     }
@@ -121,5 +119,5 @@ public class Module implements Serializable {
     public String toString() {
         return nom;
     }
-    
+
 }

@@ -33,7 +33,7 @@ public class UserController implements Serializable {
         int res = ejbFacade.seConnecter(getSelected());
         if (res == 1) {
             SessionUtil.registerUser(getSelected());
-            return "/module/List.xhtml?faces-redirect=true";
+            return "/parcours/List.xhtml?faces-redirect=true";
         } else if (res == -1) {
             JsfUtil.addErrorMessage(" Probleme Login");
         } else if (res == -2) {

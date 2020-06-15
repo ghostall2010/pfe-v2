@@ -67,12 +67,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListModuleInscriptionTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{moduleInscriptionController.prepareCreate}" update=":ModuleInscriptionCreateForm" oncomplete="PF('ModuleInscriptionCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ModuleInscriptionViewForm" oncomplete="PF('ModuleInscriptionViewDialog').show()" disabled="#{empty moduleInscriptionController.selected}"/>

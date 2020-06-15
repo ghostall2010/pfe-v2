@@ -51,12 +51,7 @@
                             </f:facet>
                             <h:outputText value="#{item.parcours}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFillierTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                    
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{fillierController.prepareCreate}" update=":FillierCreateForm" oncomplete="PF('FillierCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FillierViewForm" oncomplete="PF('FillierViewDialog').show()" disabled="#{empty fillierController.selected}"/>

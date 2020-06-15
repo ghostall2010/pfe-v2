@@ -19,27 +19,28 @@
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
                 <h:form id="menuForm">
                     <p:menubar>
-                          <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:menuitem value="LogOut" action="#{userController.seDeconnecter()}" icon="ui-icon-item"/>
-                        <p:submenu label="Cour et Module">
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+
+                        <p:submenu label="Parcour et Fillier">
+                            <p:menuitem value="Parcours" outcome="/parcours/List.xhtml" />
+                            <p:menuitem value="Fillier" outcome="/fillier/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Module et Cours">
+                            <p:menuitem value="Module" outcome="/module/List.xhtml" />
+                            <p:menuitem value="EtatModule" outcome="/etatModule/List.xhtml" />
                             <p:menuitem value="Cours" outcome="/cours/List.xhtml" />
                             <p:menuitem value="EtatCours" outcome="/etatCours/List.xhtml" />
-                            <p:menuitem value="EtatModule" outcome="/etatModule/List.xhtml" />
-                            <p:menuitem value="Module" outcome="/module/List.xhtml" />
-                        </p:submenu>
-                        <p:submenu label="Parcour et Fillier">
-                            <p:menuitem value="Fillier" outcome="/fillier/List.xhtml" />
-                            <p:menuitem value="Parcours" outcome="/parcours/List.xhtml" />
                         </p:submenu>
                         <p:submenu label="Inscription">
-                            <p:menuitem value="CoursInscription" outcome="/coursInscription/List.xhtml" />
-                            <p:menuitem value="EtatInscription" outcome="/etatInscription/List.xhtml" />
                             <p:menuitem value="Inscription" outcome="/inscription/List.xhtml" />
+                            <p:menuitem value="EtatInscription" outcome="/etatInscription/List.xhtml" />
                             <p:menuitem value="ModuleInscription" outcome="/moduleInscription/List.xhtml" />
+                            <p:menuitem value="CoursInscription" outcome="/coursInscription/List.xhtml" />
                         </p:submenu>
-                        <p:submenu label="Profille">
+                        <p:submenu label="Profil">
                             <p:menuitem value="User" outcome="/user/List.xhtml" />
                         </p:submenu>
+                        <p:menuitem value="Deconnexion" action="#{userController.seDeconnecter()}" icon="ui-icon-close"/>
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

@@ -39,12 +39,7 @@
                             </f:facet>
                             <h:outputText value="#{item.color}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEtatModuleTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                 
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{etatModuleController.prepareCreate}" update=":EtatModuleCreateForm" oncomplete="PF('EtatModuleCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EtatModuleViewForm" oncomplete="PF('EtatModuleViewDialog').show()" disabled="#{empty etatModuleController.selected}"/>

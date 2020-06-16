@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ModuleInscriptionViewDlg" widgetVar="ModuleInscriptionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewModuleInscriptionTitle}">
+            <h:form id="ModuleInscriptionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{moduleInscriptionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_module}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.module}" title="#{bundle.ViewModuleInscriptionTitle_module}"/>
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_inscription}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.inscription}" title="#{bundle.ViewModuleInscriptionTitle_inscription}"/>
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_etatModule}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.etatModule}" title="#{bundle.ViewModuleInscriptionTitle_etatModule}"/>
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_note}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.note}" title="#{bundle.ViewModuleInscriptionTitle_note}"/>
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_dateInscription}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.dateInscription}" title="#{bundle.ViewModuleInscriptionTitle_dateInscription}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_dateFinalisation}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.dateFinalisation}" title="#{bundle.ViewModuleInscriptionTitle_dateFinalisation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewModuleInscriptionLabel_id}"/>
+                        <h:outputText value="#{moduleInscriptionController.selected.id}" title="#{bundle.ViewModuleInscriptionTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ModuleInscriptionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

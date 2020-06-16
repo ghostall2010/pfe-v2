@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParcoursEditDlg" widgetVar="ParcoursEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditParcoursTitle}">
+            <h:form id="ParcoursEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{parcoursController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditParcoursLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{parcoursController.selected.libelle}" title="#{bundle.EditParcoursTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditParcoursLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{parcoursController.selected.description}" title="#{bundle.EditParcoursTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditParcoursLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{parcoursController.selected.id}" title="#{bundle.EditParcoursTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{parcoursController.update}" value="#{bundle.Save}" update="display,:ParcoursListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ParcoursEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ParcoursEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

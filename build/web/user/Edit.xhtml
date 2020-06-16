@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserEditDlg" widgetVar="UserEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUserTitle}">
+            <h:form id="UserEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUserLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{userController.selected.nom}" title="#{bundle.EditUserTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{userController.selected.prenom}" title="#{bundle.EditUserTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_motDePasse}" for="motDePasse" />
+                        <p:inputText id="motDePasse" value="#{userController.selected.motDePasse}" title="#{bundle.EditUserTitle_motDePasse}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_dateNaissance}" for="dateNaissance" />
+                        <p:calendar id="dateNaissance" pattern="MM/dd/yyyy" value="#{userController.selected.dateNaissance}" title="#{bundle.EditUserTitle_dateNaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditUserLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{userController.selected.adresse}" title="#{bundle.EditUserTitle_adresse}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_imageProfile}" for="imageProfile" />
+                        <p:inputText id="imageProfile" value="#{userController.selected.imageProfile}" title="#{bundle.EditUserTitle_imageProfile}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_dateInscription}" for="dateInscription" />
+                        <p:calendar id="dateInscription" pattern="MM/dd/yyyy" value="#{userController.selected.dateInscription}" title="#{bundle.EditUserTitle_dateInscription}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditUserLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{userController.selected.id}" title="#{bundle.EditUserTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{userController.update}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UserEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UserEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

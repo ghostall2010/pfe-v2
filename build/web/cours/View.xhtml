@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoursViewDlg" widgetVar="CoursViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCoursTitle}">
+            <h:form id="CoursViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coursController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCoursLabel_nom}"/>
+                        <h:outputText value="#{coursController.selected.nom}" title="#{bundle.ViewCoursTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewCoursLabel_description}"/>
+                        <h:outputText value="#{coursController.selected.description}" title="#{bundle.ViewCoursTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewCoursLabel_module}"/>
+                        <h:outputText value="#{coursController.selected.module}" title="#{bundle.ViewCoursTitle_module}"/>
+                        <h:outputText value="#{bundle.ViewCoursLabel_coeffission}"/>
+                        <h:outputText value="#{coursController.selected.coeffission}" title="#{bundle.ViewCoursTitle_coeffission}"/>
+                        <h:outputText value="#{bundle.ViewCoursLabel_niveauDiffeculte}"/>
+                        <h:outputText value="#{coursController.selected.niveauDiffeculte}" title="#{bundle.ViewCoursTitle_niveauDiffeculte}"/>
+                        <h:outputText value="#{bundle.ViewCoursLabel_etatCours}"/>
+                        <h:outputText value="#{coursController.selected.etatCours}" title="#{bundle.ViewCoursTitle_etatCours}"/>
+                        <h:outputText value="#{bundle.ViewCoursLabel_id}"/>
+                        <h:outputText value="#{coursController.selected.id}" title="#{bundle.ViewCoursTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CoursViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

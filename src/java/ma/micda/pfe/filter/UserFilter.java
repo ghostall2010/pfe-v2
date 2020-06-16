@@ -24,7 +24,7 @@ public class UserFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
-
+        // Test Git Push
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
         boolean resourceRequest = req.getRequestURI().startsWith(req.getContextPath() + "/faces" + ResourceHandler.RESOURCE_IDENTIFIER);

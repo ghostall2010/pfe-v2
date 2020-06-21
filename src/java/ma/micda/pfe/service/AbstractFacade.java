@@ -5,8 +5,10 @@
  */
 package ma.micda.pfe.service;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import ma.micda.pfe.service.util.DateUtil;
 
 /**
  *
@@ -14,10 +16,115 @@ import javax.persistence.EntityManager;
  */
 public abstract class AbstractFacade<T> {
 
-    private Class<T> entityClass;
+   private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
+    }
+
+    public String initQuery(String item) {
+        return "SELECT  " + item + " FROM " + entityClass.getSimpleName() + " " + item + " WHERE 1=1";
+    }
+
+    public String initQuery() {
+        return initQuery("item");
+    }
+
+    public T findOne(String key, String value) {
+        return findOne("item", key, value);
+    }
+
+    public T findOne(String item, String key, String value) {
+        List<T> list = findMultiple(item, key, value);
+        return getFirst(list);
+    }
+
+    public List<T> findMultiple(String key, String value) {
+        return findMultiple("item", key, value);
+    }
+
+    public List<T> findMultiple(String item, String key, String value) {
+        String query = initQuery(item);
+        query += addConstraint(item, key, value, "=");
+        return findMultiple(query);
+    }
+
+    public T findOne(String query) {
+        List<T> result = findMultiple(query);
+        return getFirst(result);
+    }
+
+    private T getFirst(List<T> result) {
+        if (result != null && !result.isEmpty()) {
+            return result.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public List<T> findMultiple(String query) {
+        List<T> result = getEntityManager().createQuery(query).getResultList();
+        return result;
+    }
+
+    public String addConstraint(String item, String key, Object value, String operator) {
+        boolean condition = value != null;
+        if (value != null && value.getClass().getSimpleName().equals("String")) {
+            condition = condition && !value.equals("");
+        }
+        if (condition && !key.equals("")) {
+            return " AND " + item + "." + key + " " + operator + " '" + value + "'";
+        }
+        return "";
+    }
+
+    public static String addConstraintMinMax(String beanAbrev, String atributeName, Object valueMin, Object valueMax) {
+        String requette = "";
+        if (valueMin != null) {
+            requette += " AND " + beanAbrev + "." + atributeName + " >= '" + valueMin + "'";
+        }
+        if (valueMax != null) {
+            requette += " AND " + beanAbrev + "." + atributeName + " <= '" + valueMax + "'";
+        }
+        return requette;
+    }
+
+    public String addConstraint(String beanAbrev, String atributeName, String operator, Date value) {
+        return addConstraint(beanAbrev, atributeName, DateUtil.convertFormUtilToSql(value), operator);
+    }
+
+    public String addConstraintMinMaxDate(String beanAbrev, String atributeName, Date valueMin, Date valueMax) {
+        return addConstraintMinMax(beanAbrev, atributeName, DateUtil.convertFormUtilToSql(valueMin), DateUtil.convertFormUtilToSql(valueMax));
+    }
+    public static String addConstraintMinMax( String atributeName, Object valueMin, Object valueMax) {
+        String requette = "";
+        String beanAbrev="item";
+        if (valueMin != null) {
+            requette += " AND " + beanAbrev + "." + atributeName + " >= '" + valueMin + "'";
+        }
+        if (valueMax != null) {
+            requette += " AND " + beanAbrev + "." + atributeName + " <= '" + valueMax + "'";
+        }
+        return requette;
+    }
+
+    public String addConstraint(String atributeName, String operator, Date value) {
+         String beanAbrev="item";
+        return addConstraint(beanAbrev, atributeName, DateUtil.convertFormUtilToSql(value), operator);
+    }
+
+    public String addConstraintMinMaxDate( String atributeName, Date valueMin, Date valueMax) {
+         String beanAbrev="item";
+        return addConstraintMinMax( beanAbrev,atributeName, DateUtil.convertFormUtilToSql(valueMin), DateUtil.convertFormUtilToSql(valueMax));
+    }
+     
+
+    public String addConstraint(String key, String value) {
+        return addConstraint("item", key, value, "=");
+    }
+
+    public String addConstraintLike(String key, String value) {
+        return addConstraint("item", key, value +"%", "LIKE");
     }
 
     protected abstract EntityManager getEntityManager();
@@ -59,6 +166,5 @@ public abstract class AbstractFacade<T> {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
-    }
-    
+    }    
 }

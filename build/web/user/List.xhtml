@@ -15,6 +15,15 @@
 
         <ui:define name="body">
             <h:form id="UserListForm">
+                <p:panelGrid columns="8" rendered="#{userController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUserLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{userController.nom}" title="#{bundle.CreateUserTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{userController.prenom}" title="#{bundle.CreateUserTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{userController.email}" title="#{bundle.CreateUserTitle_email}" />
+                        <p:commandButton actionListener="#{userController.findByCriteria()}" value="Ok" update="datalist"/>
+                    </p:panelGrid>
                 <p:panel header="#{bundle.ListUserTitle}">
                     <p:dataTable id="datalist" value="#{userController.items}" var="item"
                                  selectionMode="single" selection="#{userController.selected}"

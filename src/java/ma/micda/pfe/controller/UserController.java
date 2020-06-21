@@ -28,6 +28,13 @@ public class UserController implements Serializable {
     private ma.micda.pfe.service.UserFacade ejbFacade;
     private List<User> items = null;
     private User selected;
+    private String nom;
+    private String prenom;
+    private String email;
+
+    public void findByCriteria() {
+        items = ejbFacade.findByCriteria(nom, prenom, email);
+    }
 
     public String seConnecter() {
         int res = ejbFacade.seConnecter(getSelected());
@@ -56,6 +63,38 @@ public class UserController implements Serializable {
             selected = new User();
         }
         return selected;
+    }
+
+    public UserFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(UserFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setSelected(User selected) {

@@ -31,7 +31,14 @@ public class UserFacade extends AbstractFacade<User> {
             return 1;
         }
     }
-
+    public List<User> findByCriteria(String nom, String prenom, String email){
+    String query=initQuery();
+    query +=addConstraintLike("nom", nom);
+    query +=addConstraintLike("prenom", prenom);
+    query +=addConstraintLike("email", email);
+        System.out.println("query = " + query);
+    return findMultiple(query);
+}
     public User findByEmail(String email) {
         List<User> users = em.createQuery("SELECT u FROM User u WHERE u.email = '" + email + "'").getResultList();
         if (users == null || users.isEmpty()) {
